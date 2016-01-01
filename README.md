@@ -35,9 +35,10 @@ git clone https://github.com/haya14busa/incsearch-easymotion.vim ~/.vim/bundle/i
 **Give it a shot!** :gun: `:call incsearch#call(incsearch#config#easymotion#make()) `
 
 ```vim
-map z/ <Plug>(incsearch-easymotion-/)
-map z? <Plug>(incsearch-easymotion-?)
-map zg/ <Plug>(incsearch-easymotion-stay)
+map z/  <Plug>(incsearch-easymotion-/)
+map z?  <Plug>(incsearch-easymotion-?)
+map zg/ <Plug>(incsearch-easymotion-stay-/)
+map zg? <Plug>(incsearch-easymotion-stay-?)
 ```
 
 ### Advanced usage
