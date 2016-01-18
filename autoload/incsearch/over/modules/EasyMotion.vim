@@ -7,7 +7,12 @@ scriptencoding utf-8
 let s:save_cpo = &cpo
 set cpo&vim
 
-let s:module = { 'name' : 'EasyMotion' }
+let s:module = {
+\   'name' : 'EasyMotion',
+\   'config': {
+\     'overwin': 0
+\   },
+\ }
 
 function! s:module._easymotion(cmdline) abort
   let [raw_pattern, _] = a:cmdline._parse_pattern()
@@ -22,7 +27,8 @@ function! s:module._easymotion(cmdline) abort
   \   'pattern': pattern,
   \   'visualmode': s:is_visual(a:cmdline._mode),
   \   'direction': 2,
-  \   'accept_cursor_pos': 1
+  \   'accept_cursor_pos': 1,
+  \   'overwin': self.config.overwin && a:cmdline._mode is# 'n'
   \ }
   call incsearch#highlight#off()
   call EasyMotion#go(config)
@@ -38,8 +44,10 @@ function! s:module.on_char_pre(cmdline)
   endif
 endfunction
 
-function! incsearch#over#modules#EasyMotion#make() abort
-  return deepcopy(s:module)
+function! incsearch#over#modules#EasyMotion#make(...) abort
+  let m = deepcopy(s:module)
+  let m.config = extend(m.config, get(a:, 1, {}))
+  return m
 endfunction
 
 function! s:is_visual(mode) abort

@@ -7,8 +7,8 @@ scriptencoding utf-8
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! incsearch#config#easymotion#module() abort
-  return incsearch#over#modules#EasyMotion#make()
+function! incsearch#config#easymotion#module(...) abort
+  return call('incsearch#over#modules#EasyMotion#make', a:000, {})
 endfunction
 
 function! incsearch#config#easymotion#make(...) abort
