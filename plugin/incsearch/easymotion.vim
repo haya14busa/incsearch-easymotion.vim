@@ -18,9 +18,10 @@ function! s:config(...) abort
   return incsearch#config#easymotion#make(get(a:, 1, {}))
 endfunction
 
-noremap <silent><expr> <Plug>(incsearch-easymotion-/)    incsearch#go(<SID>config())
-noremap <silent><expr> <Plug>(incsearch-easymotion-?)    incsearch#go(<SID>config({'command': '?'}))
-noremap <silent><expr> <Plug>(incsearch-easymotion-stay) incsearch#go(<SID>config({'is_stay': 1}))
+noremap <silent><expr> <Plug>(incsearch-easymotion-/)      incsearch#go(<SID>config({'command': '/'}))
+noremap <silent><expr> <Plug>(incsearch-easymotion-?)      incsearch#go(<SID>config({'command': '?'}))
+noremap <silent><expr> <Plug>(incsearch-easymotion-stay-/) incsearch#go(<SID>config({'command': '/', 'is_stay': 1}))
+noremap <silent><expr> <Plug>(incsearch-easymotion-stay-?) incsearch#go(<SID>config({'command': '?', 'is_stay': 1}))
 
 
 let &cpo = s:save_cpo
